@@ -15,13 +15,19 @@ abstract class WatchConnectivityBase {
 
   final _messageStreamController =
       StreamController<Map<String, dynamic>>.broadcast();
+  final _userInfoStreamController =
+      StreamController<Map<String, dynamic>>.broadcast();
   final _contextStreamController =
       StreamController<Map<String, dynamic>>.broadcast();
 
   /// Stream of messages received
   Stream<Map<String, dynamic>> get messageStream =>
       _messageStreamController.stream;
-
+  
+  /// Stream of userInfo received
+  Stream<Map<String, dynamic>> get userInfoStream =>
+      _userInfoStreamController.stream;
+  
   /// Stream of contexts received
   Stream<Map<String, dynamic>> get contextStream =>
       _contextStreamController.stream;
@@ -37,6 +43,9 @@ abstract class WatchConnectivityBase {
     switch (call.method) {
       case 'didReceiveMessage':
         _messageStreamController.add(Map<String, dynamic>.from(call.arguments));
+        break;
+      case 'didReceiveUserInfo':
+        _userInfoStreamController.add(Map<String, dynamic>.from(call.arguments));
         break;
       case 'didReceiveApplicationContext':
         _contextStreamController.add(Map<String, dynamic>.from(call.arguments));
