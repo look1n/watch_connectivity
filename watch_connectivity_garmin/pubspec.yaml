@@ -11,7 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   
-  watch_connectivity_platform_interface: ^0.1.1
+  watch_connectivity_platform_interface:
+    git:
+      url: https://github.com/look1n/watch_connectivity.git
+      path: watch_connectivity_platform_interface
+      ref: master
 
 dev_dependencies:
   flutter_test:
