@@ -69,6 +69,10 @@ public class SwiftWatchConnectivityPlugin: NSObject, FlutterPlugin, WCSessionDel
         channel.invokeMethod("didReceiveMessage", arguments: message)
     }
     
+    public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any]) {
+        channel.invokeMethod("didReceiveUserInfo", arguments: userInfo)
+    }
+    
     public func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
         channel.invokeMethod("didReceiveApplicationContext", arguments: applicationContext)
     }
